@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="RYOV" lang="en-US">
+    <head>
+        <title>HTML5 Media Recorder POC</title>
+           <!-- Bootstrap -->
+        <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+       
+        <script src="js/data/sentences.js" type="text/javascript"></script>
+        <script src="js/lib/angular.min.js" type="text/javascript"></script>
+        <script src="js/lib/MediaStreamRecorder.js" type="text/javascript"></script>
+        <script src="js/lib/is.js" type="text/javascript"></script>
+        <script src="js/app.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
+        <base href="/">
+
+    </head>
+    <body> 
+        
+        <div ng-controller = "sentencesController" class="container-fluid">
+             
+            
+            <div class="jumbotron">
+                <h1>Treine a sua pronúncia em Inglês !</h1>
+                <label class="col-sm-2 control-label"> Selecione a voz:</label>
+                <select name="mounted" 
+                         class="form-control"
+                         ng-model="selected_voice" 
+                         ng-options="i.name for i in scope.options" 
+                         lazy-load-options 
+                         data-options="scope.options" 
+                         data-prom="mountedPromiseHolder" 
+                         ng-readonly="readonly"  
+                         ng-disabled="readonly">
+                 </select>
+            </div>
+           
+            <div class="row">
+                <ul class="list-group">
+                    <li ng-repeat="s in sentences" class="list-group-item">
+                        {{ s.OriginalText}}
+                        </br>
+                        <button ng-click="listenoriginal(s)" class="btn btn-primary btn-md">Ouvir Som Original </button>
+                        <button ng-click="record(s)" class="btn btn-primary btn-md">Gravar </button>
+                        <button ng-click="listen(s)" class="btn btn-primary btn-md">Ouvir</button>
+                        <audio controls="controls" ng-src="{{s.StudentAudio}}" autoplay></audio>
+                    </li>
+                 </ul>
+            </div>
+        </div>
+        
+
+    </body>
+</html>
+            
+          
